@@ -1,5 +1,23 @@
 #pragma once
-
+/*
+ * MIT LICENSE
+ * Copyright (c) 2019 Vladyslav Joss
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this
+ * software and associated documentation files (the "Software"), to deal in the Software
+ * without restriction, including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+ * to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ * BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 #include "CoreTemplates.h"
 
 namespace vex::union_impl
@@ -101,8 +119,7 @@ namespace vex::union_impl
 		template <typename... TFuncs>
 		inline void MultiMatch(TFuncs&&... Funcs)
 		{
-			[](...) {
-			}((Match(Funcs), 0)...);
+			[](...) {}((Match(Funcs), 0)...);
 		}
 
 		inline void Reset()
@@ -203,7 +220,7 @@ namespace vex::union_impl
 		{
 			static_assert(traits::HasType<T, Types...>(), "Union cannot possibly contain this type");
 			if (!this->template Has<T>())
-				this->Set<T>(T());
+				this->Set(T());
 
 			return *(reinterpret_cast<T*>(this->Storage));
 		}
@@ -459,4 +476,4 @@ namespace vex
 	// #todo write proper option that is efficient, temporary hack
 	template <typename T>
 	using Opt = vex::union_impl::UnionImpl<std::is_trivial_v<T>, T>;
-}
+} // namespace vex
