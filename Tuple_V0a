@@ -372,7 +372,7 @@ namespace std
 	template <std::size_t I, class... Types>
 	constexpr auto& get(vex::Tuple<Types...>& arg)
 	{
-		return template arg.Get<I>();
+		return arg.template Get<I>();
 	}
 } // namespace std
 /*
