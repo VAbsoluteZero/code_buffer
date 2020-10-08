@@ -369,10 +369,10 @@ namespace std
 		using type = typename vex::GetTypeByIndex<N, Types...>::type;
 	};
 
-	template <auto I, class... Types>
+	template <std::size_t I, class... Types>
 	constexpr auto& get(vex::Tuple<Types...>& arg)
 	{
-		return arg.Get<I>();
+		return template arg.Get<I>();
 	}
 } // namespace std
 /*
